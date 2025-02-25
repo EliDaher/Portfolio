@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser"; // ✅ Import EmailJS
 
 export default function Contact() {
   const email = "eeli56315@gmail.com";
   const phone = "+963 947 089 514";
+  const form = useRef();
   const [copied, setCopied] = useState(false);
 
   const copyText = (copyTextValue) => {
@@ -10,16 +12,35 @@ export default function Contact() {
       .writeText(copyTextValue)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // إخفاء بعد 2 ثانية
+        setTimeout(() => setCopied(false), 2000); // Hide after 2 seconds
       })
       .catch((err) => console.error("Failed to copy:", err));
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault(); // ✅ Prevent default form submission
+
+    emailjs
+      .sendForm(
+        "service_9rz0l59", // ✅ Your EmailJS service ID
+        "template_kcwnu4i", // ✅ Your EmailJS template ID
+        form.current, // ✅ Correct reference to the form
+        "tDVr_CCKVaeH3p2aL" // ✅ Your EmailJS public key
+      )
+      .then((result) => {
+        console.log("Email sent!", result.text);
+        alert("Email sent successfully!"); // Optional feedback for user
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+      });
   };
 
   return (
     <>
       <div id="contact" className="scroll-mt-14 text-center md:text-left bg-background-800">
         <div className="pb-24 pt-20 bg-background-900">
-            <h1 className="font-bold text-4xl my-2 text-primary-400 text-center">Get in Touch</h1>
+          <h1 className="font-bold text-4xl my-2 text-primary-400 text-center">Get in Touch</h1>
           <div className="p-10 flex-col justify-center items-center md:flex-row lg:flex">
             <div>
               <p className="font-bold text-lg text-text-100 w-[80%] mb-8 text-left">
@@ -57,10 +78,10 @@ export default function Contact() {
 
             {/* Contact Form */}
             <div>
-              <form className="mt-8 space-y-4">
-                <input type="text" placeholder="Your Name" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none" />
-                <input type="email" placeholder="Your Email" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none" />
-                <textarea placeholder="Your Message" rows="4" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none"></textarea>
+              <form className="mt-8 space-y-4" ref={form} onSubmit={sendEmail}>
+                <input type="text" name="user_name" placeholder="Your Name" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none" required />
+                <input type="email" name="user_email" placeholder="Your Email" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none" required />
+                <textarea name="message" placeholder="Your Message" rows="4" className="w-full p-3 bg-text-600 border border-secondary-700 text-white rounded-lg focus:outline-none" required></textarea>
                 <button type="submit" className="w-full bg-secondary-700 hover:bg-secondary-800 p-3 rounded-lg text-white">
                   Send Message
                 </button>
