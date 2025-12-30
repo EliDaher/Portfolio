@@ -25,7 +25,10 @@ export default function Projects(){
           ></i>
           <i className="bx bxl-tailwind-css animate-[bounce_2s_infinite] opacity-30 blur-[1px] text-8xl absolute top-[70%] left-[80%] text-background-700 z-10"></i>
           <div className="text-left">
-            <h1 className="font-medium text-4xl my-4 mb-8 text-primary-600 ml-16 max-w-3xl leading-relaxed">
+            <h1
+              className="font-medium text-2xl md:text-3xl ml-8 md:ml-16
+ mb-8 text-primary-600 max-w-3xl leading-relaxed"
+            >
               These projects reflect my experience building scalable,
               business-focused systems.
             </h1>
@@ -49,8 +52,7 @@ export default function Projects(){
               featured
               header={"Local Chat App"}
               photo={Chat}
-              details={`Real-time chat application Working local To STE in Hama.
-                      `}
+              details={`Real-time local chat application built for internal communication within STE – Hama.`}
               technology={[
                 "Socket.IO",
                 "TypeScript",
@@ -63,15 +65,14 @@ export default function Projects(){
               featured
               header={"Inventory Management System"}
               photo={Inventory}
-              details={`Comprehensive inventory management system for tracking stock levels,
-                          orders, and suppliers, designed to streamline business operations.
-                      `}
+              details={`Inventory management system for tracking stock levels, orders, and suppliers,
+designed to streamline daily business operations.`}
               technology={[
                 "React",
                 "TypeScript",
                 "Tailwind",
                 "FireBase",
-                "Recharts"
+                "Recharts",
               ]}
             />
           </div>
@@ -101,7 +102,7 @@ export default function Projects(){
               href="#contact"
               className="inline-block px-6 py-3 bg-primary-500 text-background-900 font-semibold rounded-lg hover:bg-primary-600 transition"
             >
-              Interested in working together?
+              Let’s build something impactful together
             </a>
           </div>
         </div>
