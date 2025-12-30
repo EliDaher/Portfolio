@@ -1,30 +1,61 @@
+export default function ProjectCard({
+  pageLink = "",
+  header,
+  photo,
+  details,
+  technology,
+  featured = false,
+}) {
+  return (
+    <div
+      className={`group z-20 p-4 bg-background-800 rounded-2xl w-72 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 border ${
+        featured ? "border-primary-500" : "border-background-600"
+      }`}
+    >
+      {featured && (
+        <span className="text-xs text-primary-400 uppercase tracking-wider mb-2 inline-block">
+          Featured Project
+        </span>
+      )}
 
+      <div className="overflow-hidden rounded-xl h-40 mb-4">
+        <img
+          src={photo}
+          alt={header}
+          className="w-full h-full object-cover transform group-hover:scale-110 transition duration-300"
+        />
+      </div>
 
-export default function ProjectCard({pageLink="", header, photo, details, technology}){
-    return <>
-        <div className="z-20 bg-background-700 rounded-xl md:w-60 w-48 pb-4 shadow shadow-[0px_0px_4px_#898989] hover:shadow-[0px_0px_8px_#898989] hover:scale-[1.05] transition border border-background-500">
-            <img src={photo} alt="" className='h-36 w-72 rounded-t-xl border-b' />
-            <div className="flex justify-between items-end -mt-3 mb-2">
-                <h2 className="text-gray-200 font-bold text-xl pl-5 pt-7">{header}</h2>
-                {
-                pageLink ?
-                    <a 
-                        className="bg-primary-900 text-primary-100 p-1 px-2 mr-3 flex items-center rounded"
-                        href={pageLink}
-                        target="_blank"
-                    >Visit</a>
-                : ""
-                }
-            </div>
-            <p className="text-gray-300 pl-5">{details}</p>
-            <div className="pl-5 pt-3 text-primary-200 flex flex-wrap gap-1">
-                {technology.map(tech => {
-                   return <p className="bg-primary-900 w-fit px-2 text-sm rounded-full">{tech}</p>
+      <div className="flex justify-between items-start mb-2 px-1 gap-2">
+        <h2 className="text-gray-100 font-semibold text-lg line-clamp-2">
+          {header}
+        </h2>
+        {pageLink && (
+          <a
+            href={pageLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary-600 hover:bg-primary-500 text-background-900 text-xs font-medium px-3 py-1 rounded-full transition whitespace-nowrap"
+          >
+            Live Demo
+          </a>
+        )}
+      </div>
 
-                })}
-            </div>
-            
-        </div>
-    </>
+      <p className="text-gray-400 text-sm mb-3 px-1 line-clamp-3">{details}</p>
+
+      <p className="text-xs text-gray-500 mb-2 px-1">Tech stack</p>
+
+      <div className="flex flex-wrap gap-2 px-1">
+        {technology.map((tech, index) => (
+          <span
+            key={index}
+            className="bg-primary-900 text-primary-100 text-xs px-3 py-1 rounded-full"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
 }
-

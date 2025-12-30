@@ -7,7 +7,7 @@ export default function Navbar() {
         <>
             <div className="sticky top-0 left-0 z-50 flex items-center justify-between bg-background-800 p-2 shadow-md shadow-background-700 select-none">
                 {/* Logo */}
-                <div className="text-xl text-transparent bg-clip-text font-extrabold bg-gradient-to-r from-primary-500 to-secondary-300 font-bold w-24">
+                <div className="text-3xl text-transparent bg-clip-text font-extrabold bg-gradient-to-r from-primary-500 to-secondary-300">
                     Eli Daher
                 </div>
 
@@ -15,7 +15,7 @@ export default function Navbar() {
                 <div className={`
                     absolute top-0 h-screen w-60 bg-background-700 flex flex-col transition-all duration-300
                     ${active ? "right-0 opacity-100 pointer-events-auto" : "-right-60 opacity-0 pointer-events-none"}
-                    
+                    text-xl
                     md:sticky md:flex-row md:h-full md:flex md:items-center md:justify-between md:bg-background-800 md:opacity-100 md:pointer-events-auto
                 `}>
                     {/* Close Button (Only Mobile) */}
