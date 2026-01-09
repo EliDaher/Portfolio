@@ -15,7 +15,7 @@ export default function Navbar() {
                 <div className={`
                     absolute top-0 h-screen w-60 bg-background-700 flex flex-col transition-all duration-300
                     ${active ? "right-0 opacity-100 pointer-events-auto" : "-right-60 opacity-0 pointer-events-none"}
-                    text-xl
+                    text-lg
                     md:sticky md:flex-row md:h-full md:flex md:items-center md:justify-between md:bg-background-800 md:opacity-100 md:pointer-events-auto
                 `}>
                     {/* Close Button (Only Mobile) */}
